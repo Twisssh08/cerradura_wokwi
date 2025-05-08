@@ -1,0 +1,2 @@
+0 Cerrar puerta
+1 Abrir puerta
