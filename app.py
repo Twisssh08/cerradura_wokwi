@@ -23,7 +23,7 @@ def on_message(client, userdata, message):
 
 broker="broker.hivemq.com"
 port=1883
-client1= paho.Client("APP_CERR")
+client1= paho.Client("CerraduraMateo_W")
 client1.on_message = on_message
 client1.on_publish = on_publish
 client1.connect(broker,port)
@@ -55,10 +55,10 @@ if img_file_buffer is not None:
     prediction = model.predict(data)
     print(prediction)
     if prediction[0][0]>0.3:
-      st.header('Abriendo')
-      client1.publish("IMIA","{'gesto': 'Abre'}",qos=0, retain=False)
+      st.header('Cerrando')
+      client1.publish("MATEO_topic","{'gesto': 'Abre'}",qos=0, retain=False)
       time.sleep(0.2)
     if prediction[0][1]>0.3:
-      st.header('Cerrando')
-      client1.publish("IMIA","{'gesto': 'Cierra'}",qos=0, retain=False)
+      st.header('Abriendo')
+      client1.publish("MATEO_topic","{'gesto': 'Cierra'}",qos=0, retain=False)
       time.sleep(0.2)  
